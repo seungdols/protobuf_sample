@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package com.seungdols.company.proto.sample;
+
+message PersonDetail {
+  oneof name {
+      string first_name = 1;
+      string last_name = 2;
+  }
+}
+
