@@ -30,3 +30,15 @@ message Product {
   }
   ProductType product_type = 5;
 }
+
+message OrderRequest {
+  string id = 1;
+}
+
+message OrderResponse {
+  Order order = 1;
+}
+
+service OrderService {
+  rpc GetOrder(OrderRequest) returns (OrderResponse);
+}
