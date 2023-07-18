@@ -1,5 +1,9 @@
 package com.seungdols.company.proto.sample
 
+import com.seungdols.company.proto.order.vo.Order
+import com.seungdols.company.proto.order.vo.Product
+import com.seungdols.company.proto.order.vo.order
+import com.seungdols.company.proto.order.vo.product
 import com.seungdols.company.proto.sample.PersonDetailOuterClass.PersonDetail
 import com.seungdols.compnay.proto.sample.person
 
@@ -27,5 +31,38 @@ fun main(args: Array<String>) {
         .build();
 
     println(personDetail2)
+    val order = order {
+        id = "1"
+        customerId = "2"
+        totalPrice = 35000
+    }
 
+    val products = listOf(
+        product {
+            id = "1"
+            name = "product1"
+            quantity = 1
+            price = 1000
+            productType = Product.ProductType.PRODUCT
+        },
+        product {
+            id = "2"
+            name = "product2"
+            quantity = 1
+            price = 11000
+            productType = Product.ProductType.PRODUCT
+        },
+    )
+    val order1 = Order.newBuilder()
+        .setId("1")
+        .setCustomerId("2")
+        .addAllProducts(
+            products
+        )
+        .setTotalPrice(
+            products.sumOf { p -> p.price }
+        )
+
+    println(order)
+    println(order1)
 }
